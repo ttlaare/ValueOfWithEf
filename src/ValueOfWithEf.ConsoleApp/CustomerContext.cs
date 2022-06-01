@@ -17,14 +17,14 @@ public class CustomerContext : DbContext
             .Entity<Customer>()
             .Property(e => e.Id)
             .HasConversion(
-                id => id.Value,
-                id => CustomerId.From(id));
+                convertToProviderExpression: id => id.Value,
+                convertFromProviderExpression: id => CustomerId.From(id));
 
         modelBuilder
             .Entity<Customer>()
             .Property(e => e.Email)
             .HasConversion(
-                emailAddress => emailAddress.ToString(),
-                emailAddress => EmailAddress.From(emailAddress));
+                convertToProviderExpression: emailAddress => emailAddress.ToString(),
+                convertFromProviderExpression: emailAddress => EmailAddress.From(emailAddress));
     }
 }
