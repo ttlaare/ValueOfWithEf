@@ -24,7 +24,7 @@ public class CustomerContext : DbContext
             .Entity<Customer>()
             .Property(e => e.Email)
             .HasConversion(
-                convertToProviderExpression: emailAddress => emailAddress.ToString(),
+                convertToProviderExpression: emailAddress => emailAddress.Value,
                 convertFromProviderExpression: emailAddress => EmailAddress.From(emailAddress));
     }
 }
